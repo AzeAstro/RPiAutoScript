@@ -1,0 +1,1 @@
+{"ssid":"Atlas", "password":"rightBehindYou","gateway":"192.168.12.1","dhcp-dns":"1.1.1.1","interfaceOut":"wlan1","isolate-clients":true,"interfaceIn":"eth0"}
