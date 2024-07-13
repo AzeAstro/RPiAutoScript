@@ -12,7 +12,7 @@ NOINTERNET=False
 
 def getSettings(filePath:str):
     if os.path.isfile(filePath):
-        print(f"Trying to use settings from {filePath.split("/")[-1]}...")
+        print(f"Trying to use settings from {filePath.split('/')[-1]}...")
         try:
             with open(filePath,"r") as f:
                 settings=json.load(f)
@@ -30,17 +30,17 @@ def parseSettings(settings:dict):
     global NOINTERNET
     settingsStr=""
     if settings.get("interfaceOut"):
-        print(f"Using provided out interface: {settings.get("interfaceOut")}")
+        print(f"Using provided out interface: {settings.get('interfaceOut')}")
         if settings.get("ssid"):
-            print(f"Using provided SSID: {settings.get("ssid")}")
-            settingsStr+=f"--ap {settings.get("interfaceOut")} {settings.get("ssid")} "
+            print(f"Using provided SSID: {settings.get('ssid')}")
+            settingsStr+=f"--ap {settings.get('interfaceOut')} {settings.get('ssid')} "
         else:
             print("SSID not specified. Using default settings.")
-            settingsStr+=f"--ap {settings.get("interfaceOut")} RPiHotspot "
+            settingsStr+=f"--ap {settings.get('interfaceOut')} RPiHotspot "
     else:
         print("Out interface is not specified. Defaulting to wlan0")
         if settings.get("ssid"):
-            settingsStr+=f"--ap wlan0 {settings.get("ssid")} "
+            settingsStr+=f"--ap wlan0 {settings.get('ssid')} "
         else:
             print("SSID not specified. Using default settings.")
             settingsStr+=f"--ap wlan0 RPiHotspot "
@@ -50,20 +50,20 @@ def parseSettings(settings:dict):
         settingsStr+="--isolate-clients "
 
     if settings.get("interfaceIn"):
-        print(f"Using provided interface to get connection from: {settings.get("interfaceIn")}")
-        settingsStr+=f"-o {settings.get("interfaceIn")} "
+        print(f"Using provided interface to get connection from: {settings.get('interfaceIn')}")
+        settingsStr+=f"-o {settings.get('interfaceIn')} "
     else:
         print("No input interface specified. Will receive connections from all sources.")
 
-    if settings.get("password"):
-        print(f"Using provided password: {settings.get("password")}")
-        settingsStr+=f"-p {settings.get("password")} "
+    if settings.get('password'):
+        print(f"Using provided password: {settings.get('password')}")
+        settingsStr+=f"-p {settings.get('password')} "
     else:
         print("No password specified. Using default password: IWishIWasALittleBitTaller")
         settingsStr+="-p IWishIWasALittleBitTaller "
 
     if settings.get("gateway"):
-        settingsStr+=f"-g {settings.get("gateway")} "
+        settingsStr+=f"-g {settings.get('gateway')} "
     else:
         print("No gateway specified. Using random generated gateway.")
     
@@ -76,8 +76,8 @@ def parseSettings(settings:dict):
         print("Denying use of local DNS.")
         settingsStr+=f"--nodns "
         if settings.get("dhcp-dns"):
-            print(f"Using specified DNS: {settings.get("dhcp-dns")}")
-            settingsStr+=f"--dhcp-dns {settings.get("dhcp-dns")} "
+            print(f"Using specified DNS: {settings.get('dhcp-dns')}")
+            settingsStr+=f"--dhcp-dns {settings.get('dhcp-dns')} "
         else:
             print("No custom DNS specified. Using Google DNS.")
             settingsStr+=f"--dhcp-dns 8.8.8.8 "
