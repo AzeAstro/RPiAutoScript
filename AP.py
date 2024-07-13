@@ -74,7 +74,7 @@ def parseSettings(settings:dict):
 
     if (settings.get("nodns") and NOINTERNET==False) or (settings.get("dhcp-dns") and NOINTERNET==False):
         print("Denying use of local DNS.")
-        settingsStr+=f"--nodns "
+        settingsStr+=f"--no-dns "
         if settings.get("dhcp-dns"):
             print(f"Using specified DNS: {settings.get('dhcp-dns')}")
             settingsStr+=f"--dhcp-dns {settings.get('dhcp-dns')} "
