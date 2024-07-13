@@ -133,3 +133,5 @@ else:
     print("File not found. Using default settings.")
     settings,interfaceOut=parseSettings({})
 
+takeDownInterface(interfaceOut)
+runAP(settings)
